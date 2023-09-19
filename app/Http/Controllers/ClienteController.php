@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteFormRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
@@ -13,10 +14,9 @@ class ClienteController extends Controller
 
         $cliente = Cliente::create([
 
-            'id' => $request->id,
             'nome' => $request->nome,
             'celular' => $request->celular,
-            'e-mail' => $request->email,
+            'email' => $request->email,
             'cpf' => $request->cpf,
             'dataNascimento' => $request->dataNascimento,
             'cidade' => $request->cidade,
@@ -27,7 +27,7 @@ class ClienteController extends Controller
             'bairro' => $request->bairro,
             'cep' => $request->cep,
             'complemento' => $request->complemento,
-            'senha' => $request->senha,
+            'password' => Hash::make($request->password)
 
         ]);
         return response()->json([

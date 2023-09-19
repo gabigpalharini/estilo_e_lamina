@@ -13,7 +13,7 @@ class ClienteFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,11 +24,11 @@ class ClienteFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'id' => 'required',
+                
                 'nome'=> 'required|max:120|min:5|',
                 'celular' => 'required|max:11|min:10|',
-                'e-mail'=>'required|max:120||unique:cliente,email',
-                'cpf' => 'required|max:11|min:11|unique:cliente,cpf',
+                'email'=>'required|max:120||unique:clientes,email',
+                'cpf' => 'required|max:11|min:11|unique:clientes,cpf',
                 'dataNascimento' => 'required',
                 'cidade'=> 'required|max:120|',
                 'estado' => 'required|max:2|min:2|',
@@ -38,7 +38,7 @@ class ClienteFormRequest extends FormRequest
                 'bairro' => 'required|max:100|',
                 'cep'=> 'required|max:8|',
                 'complemento' => 'max:150',
-                'senha' =>  'required',
+                'password' =>  'required',
         ];
     }
 
@@ -81,7 +81,7 @@ class ClienteFormRequest extends FormRequest
     'cep.required' => 'O campo cep é obrigatorio',
     'cep.max' => 'o campo cep deve conter no maximo 8 caracteres',
     'complemento.max' => 'o campo complemento deve conter no maximo 150 caracteres',
-    'senha.required' => 'O campo senha é obrigatorio',
+    'password.required' => 'O campo senha é obrigatorio',
         ];
     }
     }

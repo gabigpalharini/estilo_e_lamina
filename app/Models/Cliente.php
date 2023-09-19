@@ -13,7 +13,7 @@ class Cliente extends Model
         'id',
         'nome',
         'celular',
-        'e-mail',
+        'email',
         'cpf',
         'dataNascimento',
         'cidade',
@@ -24,7 +24,7 @@ class Cliente extends Model
         'bairro',
         'cep',
         'complemento',
-        'senha'
+        'password'
 
     ];
 }

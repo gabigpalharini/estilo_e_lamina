@@ -19,6 +19,12 @@ Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 
 Route::put('update', [ServicoController::class, 'update']);
 
+
+
+
+
+
+
 Route::post('store/Cliente', [ClienteController::class, 'storeCliente']);
 
 Route::get('find/Cliente/{id}',
@@ -26,6 +32,6 @@ Route::get('find/Cliente/{id}',
 
 Route::put('update/Cliente', [ClienteController::class, 'updateCliente']);
 
-Route::get('all', [ClienteController::class, 'retornarClientes']);
+Route::get('all/Cliente', [ClienteController::class, 'retornarCliente']);
 
 Route::delete('delete/{id}', [ClienteController::class, 'excluirCliente']);
