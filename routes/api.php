@@ -26,25 +26,54 @@ Route::put('update', [ServicoController::class, 'update']);
 
 
 
-Route::post('store/Cliente', [ClienteController::class, 'storeCliente']);
+Route::post('store', [ServicoController::class, 'store']);
 
-Route::get('find/Cliente/{id}',
-[ClienteController::class, 'pesquisarPorCliente']);
+Route::get(
+    'find/{id}',
+    [ServicoController::class, 'pesquisarPorId']
+);
 
-Route::put('update/Cliente', [ClienteController::class, 'updateCliente']);
+Route::get('find/cpf/{cpf}', [ServicoController::class, 'pesquisarPorCpf']);
+Route::get('all', [ServicoController::class, 'retornarTodos']);
 
-Route::get('all/Cliente', [ClienteController::class, 'retornarCliente']);
-
-Route::delete('delete/{id}', [ClienteController::class, 'excluirCliente']);
+Route::post('nome', [ServicoController::class, 'pesquisarPorNome']);
 
 
-Route::post('store/Profissional', [ProfissionalController::class, 'storeProfissional']);
+Route::delete('delete/{id}', [ServicoController::class, 'excluir']);
 
-Route::get('find/Profissional/{id}',
-[ProfissionalController::class, 'pesquisarPorProfissional']);
+Route::put('update', [ServicoController::class, 'update']);
 
-Route::put('update/Profissional', [ProfissionalController::class, 'updateaProfissional']);
+//------------------------------------------------------------------------------CLIENTES--------------------------------------------------------------------------------//
 
-Route::get('all/Profissional', [ProfissionalController::class, 'retornarProfissional']);
+Route::post('store/Cliente', [ClienteController::class, 'storeCliente']); //Cadastrar
 
-Route::delete('delete/{id}', [ProfissionalController::class, 'excluirProfissional']);
+Route::get('all/Cliente', [ClienteController::class, 'retornarTodosClientes']); //vizualizar
+
+Route::post('nome/Cliente', [ClienteController::class, 'pesquisarClientePorNome']);
+Route::post('cpf/Cliente/{cpf}', [ClienteController::class, 'pesquisarClientePorCpf']);
+Route::post('celular/Cliente', [ClienteController::class, 'pesquisarClientePorCelular']);
+Route::post('email/Cliente', [ClienteController::class, 'pesquisarClientePorEmail']);
+
+
+Route::put('update/Cliente', [ClienteController::class, 'updateCliente']); //atualizar e editar
+
+Route::delete('delete/Cliente/{id}', [ClienteController::class, 'excluirCliente']); //excluir
+
+
+
+//------------------------------------------------------------------------------PROFISSIONAL--------------------------------------------------------------------------------//
+
+Route::post('store/Profissional', [ProfissionalController::class, 'storeProfissional']); //Cadastrar
+
+Route::get('all/Profissional', [ProfissionalController::class, 'retornarTodosProfissionais']); //vizualizar
+
+Route::post('nome/Profissional', [ProfissionalController::class, 'pesquisarPorNomeProfissional']);
+Route::post('cpf/Profissional/{cpf}', [ProfissionalController::class, 'pesquisarPorCpfProfissional']);
+Route::post('celular/Profissional', [ProfissionalController::class, 'pesquisarProfissionalPorCelular']);
+Route::post('email/Profissional', [ProfissionalController::class, 'pesquisarProfissionalPorEmail']);
+
+
+Route::put('update/Profissional', [ProfissionalController::class, 'updateProfissional']); //atualizar e editar
+
+Route::delete('delete/Profissional/{id}', [ProfissionalController::class, 'excluirProfissional']); //excluir
+
