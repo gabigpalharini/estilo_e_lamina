@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
@@ -77,3 +78,12 @@ Route::put('update/Profissional', [ProfissionalController::class, 'updateProfiss
 
 Route::delete('delete/Profissional/{id}', [ProfissionalController::class, 'excluirProfissional']); //excluir
 
+// ----------------------------------------------------------------------------AGENDA--------------------------------------------------------------------------------------------//
+
+Route::post('store/Agenda', [AgendaController::class, 'storeAgenda']); //Cadastrar
+
+Route::get('all/Agenda', [AgendaController::class, 'retornarAgenda']); //vizualizar
+Route::get('find/{id}', [AgendaController::class, 'pesquisarAgenda']);
+Route::delete('delete/{id}', [AgendaController::class, 'excluirAgenda']);
+
+Route::put('update', [AgendaController::class, 'updateAgenda']);
