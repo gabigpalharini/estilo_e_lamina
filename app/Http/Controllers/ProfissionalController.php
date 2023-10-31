@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfissionalController extends Controller
 {
+    
     public function storeProfissional(ProfissionalFormRequest $request)
     {
 
         $profissional = Profissional::create([
+
 
             'nome' => $request->nome,
             'celular' => $request->celular,
@@ -28,27 +30,25 @@ class ProfissionalController extends Controller
             'cep' => $request->cep,
             'complemento' => $request->complemento,
             'password' => Hash::make($request->password),
-            'salario' => $request->salario
+            'salario'=> $request->salario
+
 
         ]);
         return response()->json([
             "success" => true,
             "message" => "Profissional Cadastrado com sucesso",
-            "data" => $profissional,
+            "data" => $profissional
 
         ], 200);
     }
-    public function retornarProfissional()
+
+    
+
+    public function pesquisarPorNomeProfissional(Request $request)
     {
-        $profissional = Profissional::all();
-        return response()->json([
-            'status' => true,
-            'data' => $profissional
-        ]);
-    }
-    public function pesquisarPorProfissional(Request $request)
-    {
-        $profissional = profissional::where('nome', 'like', '%' . $request->nome . '%')->get();
+        $profissional = Profissional::where('nome', 'like', '%' . $request->nome . '%')->get();
+        
+       
 
         if (count($profissional) > 0) {
             return response()->json([
@@ -56,7 +56,92 @@ class ProfissionalController extends Controller
                 'data' => $profissional
             ]);
         }
+
+        return response()->json([
+            'status' => false,
+            'message' => "Nome não encontrado"
+        ]);
     }
+
+
+
+    public function pesquisarPorCpfProfissional(Request $request)
+    {
+        $profissional = Profissional::where('cpf', 'like', '%' . $request->nome . '%')->get();
+        
+       
+
+        if (count($profissional) > 0) {
+            return response()->json([
+                ' status' => true,
+                'data' => $profissional
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => "Profissional não encontrado"
+        ]);
+    }
+
+    public function pesquisarPorEmailProfissional(Request $request)
+    {
+        $profissional = Profissional::where('email', 'like', '%' . $request->email . '%')->get();
+
+        if (count($profissional) > 0) {
+            return response()->json([
+                ' status' => true,
+                'data' => $profissional
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => "E-mail não encontrado"
+        ]);
+    }
+
+    public function pesquisarPorCelularProfissional(Request $request)
+    {
+        $profissional = Profissional::where('celular', 'like', '%' . $request->celular . '%')->get();
+
+        if (count($profissional) > 0) {
+            return response()->json([
+                ' status' => true,
+                'data' => $profissional
+            ]);
+        }
+       
+        return response()->json([
+            'status' => false,
+            'message' => "Celular não encontrado"
+        ]);
+    }
+
+  
+    
+
+
+
+
+    public function retornarTodosProfissionais()
+    {
+        $profissional = Profissional::all();
+
+        if (count($profissional)< 0) {
+            return response()->json([
+                'status' => false,
+                'message' => "Nenhum Profissional Registrado"
+            ]);
+        }
+
+        return response()->json([
+            ' status' => true,
+            'data' => $profissional
+        ]);
+    }
+
+
     public function excluirProfissional($id)
     {
         $profissional = Profissional::find($id);
@@ -67,24 +152,28 @@ class ProfissionalController extends Controller
                 'message' => "Profissional não encontrado"
             ]);
         }
+
+        $profissional->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "Profissional excluido com sucesso"
+        ]);
     }
-    public function updateProfissional(Request $request)
+
+    public function updateProfissional(ProfissionalFormRequest $request)
     {
         $profissional = Profissional::find($request->id);
         if (!isset($profissional)) {
             return response()->json([
                 'status' => false,
-                'message' => "Profissional não encontrado"
+                'message' => "Profissional não Sencontrado"
             ]);
-        }
-
-        if (isset($request->id)) {
-            $profissional->id = $request->id;
         }
 
         if (isset($request->nome)) {
             $profissional->nome = $request->nome;
         }
+
         if (isset($request->celular)) {
             $profissional->celular = $request->celular;
         }
@@ -100,11 +189,9 @@ class ProfissionalController extends Controller
         if (isset($request->cidade)) {
             $profissional->cidade = $request->cidade;
         }
-
         if (isset($request->estado)) {
             $profissional->estado = $request->estado;
         }
-
         if (isset($request->pais)) {
             $profissional->pais = $request->pais;
         }
@@ -123,19 +210,24 @@ class ProfissionalController extends Controller
         if (isset($request->complemento)) {
             $profissional->complemento = $request->complemento;
         }
-        if (isset($request->senha)) {
-            $profissional->senha = $request->senha;
+        if (isset($request->password)) {
+            $profissional->password = $request->password;
         }
         if (isset($request->salario)) {
             $profissional->salario = $request->salario;
         }
 
 
-        $profissional->updateProfissional();
+
+
+        $profissional->update();
 
         return response()->json([
             'status' => true,
             'message' => 'Profissional atualizado.'
         ]);
     }
+
+
+
 }

@@ -11,7 +11,7 @@ class ServicoController extends Controller
     public function store(ServicoFormRequest $request){
 
         $servico = Servico::create([
-           
+            
 
             'nome' => $request->nome,
             'descricao' => $request->descricao,
@@ -57,6 +57,11 @@ class ServicoController extends Controller
     public function pesquisarPorNome(Request $request)
     {
         $servico = Servico::where('nome', 'like', '%' . $request->nome . '%')->get();
+        
+        return response()->json([
+            'status' => false,
+            'message' => "Servico não encontrado"
+        ]);
 
         if (count($servico) > 0) {
             return response()->json([
@@ -116,5 +121,7 @@ class ServicoController extends Controller
             'status' => true,
             'message' => 'Serviço atualizado.'
         ]);
+    }
 }
-}
+
+

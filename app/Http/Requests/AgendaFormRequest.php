@@ -24,13 +24,12 @@ class AgendaFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' =>  'required',
-            'profissional_id' => 'required',
-            'cliente_id' => 'required|bigInteger',
-            'servico_id' => 'required|bigInteger',
-            'data_hora' =>  'required',
-            'tipo_pagamento' => 'required|max:20|min:3|',
-            'valor' =>  'required',
+            'profissional' => 'required|',
+        'cliente' => '|integer',
+        'servico'  => '|integer',
+        'data_hora' => 'required|date',
+        'pagamento' => 'required|max:20|min:3',
+        'valor' => 'required|decimal:2,4'
         ];
     }
 
@@ -42,14 +41,24 @@ class AgendaFormRequest extends FormRequest
     }
 
 
-    public function messages(){
-        return[
-    'id.required' => 'O campo id é obrigatorio',
-    'profissional_id.required' => 'O campo profissional_id é obrigatorio',
-    'tipo_pagamento.required' => 'O campo tipo_pagamento é obrigatorio',
-    'tipo_pagamento.max' => 'o campo tipo_pagamento deve conter no maximo 20 caracteres',
-    'tipo_pagamento.min' => 'o campo tipo_pagamento deve conter no minimo 3 caracteres',
-    'valor.required' => 'O campo valor é obrigatorio',
+    public function messages()
+    {
+        return  [
+            'profissional.required' => 'Preencha o campo profissional',
+            
+
+
+            'data_hora.required' =>  'Horario obrigatorio',
+            'data_hora.date' => 'formato inválido',
+            
+
+            'pagamento.required' => 'preencha o campo',
+            'pagamento.max' => 'o campo deve conter 20 caracteris',
+            'pagamento.min' => 'o campo deve no minimo 3 caracteris',
+
+
+            'valor.required'=>'Valor obrigatorio'
+            
         ];
- }
+}
 }
