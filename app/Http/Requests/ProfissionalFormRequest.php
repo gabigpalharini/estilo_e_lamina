@@ -102,7 +102,7 @@ class ProfissionalFormRequest extends FormRequest
             'cep.required' => 'Preencha o campo cep',
             'cep.max' => 'Este campo deve conter no maximo 8 caractéris',
             'cep.min' => 'o campo deve no minimo 8 caracteris',
-            'cep.numeric' => 'Este campo só aceita numeros',
+         
 
             'complemento.max' => 'Este campo deve conter no maximo 150 caractéris',
 
@@ -111,7 +111,7 @@ class ProfissionalFormRequest extends FormRequest
             'salario.required' => 'Preencha o campo salario',
             'salario.max' => 'Este campo deve conter no maximo 8 caractéris',
             'salario.min' => 'o campo deve no minimo 8 caracteris',
-            'salario.decimal' => 'Este campo só aceita numeros'
+            'salario.decimal' => 'Este campo só aceita numeros decimais'
         ];
 
 
