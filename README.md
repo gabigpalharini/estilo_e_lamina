@@ -45,7 +45,7 @@ git config --global user.name "gabigpalharini"
 
 * Cadastro de [cliente](cliente.md)
 * Cadastro de [profissional](profissional.md)
-* Cadastro de [serviços](servicos.md)
+* Cadastro de [serviços](servico.md)
 * Cadastro de [agenda](agenda.md)
 
 
